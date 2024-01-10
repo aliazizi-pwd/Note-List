@@ -31,10 +31,12 @@ input:focus {
     top: 10px;
     display: none;
 }
-
 .note {
     width: 250px;
     height: 250px;
     background-color: aqua;
     border-radius: 10px;
+}
+.bg-darkMode {
+    background: #000;
 }

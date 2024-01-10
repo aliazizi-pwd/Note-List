@@ -20,7 +20,7 @@
                             <input type="text" class="input-title rounded-2 input-group-text ms-1 text-start" id="value-note" placeholder="Add Title Your New Note">
                             <input type="date" class="input-date rounded-2 input-group-text ms-1 text-start" id="value-date">
                             <input class="input-content input-group-text text-start" placeholder="Add Content Your New Note"></input>
-                            <button class="btn btn-success text-light ms-1"  id="btn-Add"><i class="fa fa-plus"></i></button>
+                            <button class="btn-Add btn btn-success text-light ms-1"><i class="fa fa-plus"></i></button>
                         </div>
                         <div class="box d-flex flex-column justify-content-center align-items-center mt-5">
                             <div class="box-note-items container-fluid w-100 h-auto d-flex flex-column flex-sm-row justify-content-center justify-content-sm-start align-items-center gap-2 flex-wrap">
@@ -44,8 +44,8 @@
                 </div>
                 <div class="col-Two">
                     <div class="total-note container d-flex flex-row justify-content-between align-items-center mb-2 mt-2">
-                        <h5 class="title-total-note text-center h6 text-capitalize text-danger" id="title-total-note">You Have 0 Tasks in total</h5>
-                        <a href="#" class="h5 clearAll text-capitalize nav-link text-danger" id="clearAll">ClearAll</a>
+                        <h5 class="count-note text-center h6 text-capitalize text-danger" id="title-total-note">You Have 0 Tasks in total</h5>
+                        <a href="#" class="btn-clearAll h5 text-capitalize nav-link text-danger" id="clearAll">ClearAll</a>
                     </div>
                 </div>
             </div>
@@ -54,9 +54,9 @@
         <section>
             <div class="filter-demo d-flex flex-row justify-content-between align-items-center mt-4 container">
                     <div class="d-flex flex-row justify-content-start align-items-center">
-                            <a href="#" class="All h5 nav-link ps-2">All</a>
-                            <a href="#" class="Completed h5 nav-link ps-3">Completed</a>
-                            <a href="#" class="unCompleted h5 nav-link ps-3">unCompleted</a>
+                            <a href="#" id="All" class="All h5 nav-link ps-2">All</a>
+                            <a href="#" id="Completed" class="Completed h5 nav-link ps-3">Completed</a>
+                            <a href="#" id="unCompleted" class="unCompleted h5 nav-link ps-3">unCompleted</a>
                     </div> 
                     <div class="d-flex justify-content-center align-items-center">
                         <a href="#" class="user btn btn-primary"><i class="fa fa-user-circle"></i></a>

@@ -24,6 +24,9 @@ const btnFilterUnComplete = $.querySelector(".unCompleted");
 const btnChangeTheme = $.querySelector(".changeTheme");
 
 
+// array note app
+let arrayNote = [];
+
 // -> The code section of the function check input validation and add notes
 function getCheckInputHandler () {
     let titleNote,dateNote,contentNote;
@@ -35,10 +38,32 @@ function getCheckInputHandler () {
     if (!titleNote || !dateNote || !contentNote) {
         showModalHandler();
     } else {
-        // process for create note item
-        
+        // process for create note
+
+        // Create a new data note 
+        let newDataNote = {
+            id :Math.floor( 10000 + Math.random() * 90000), 
+            title : titleNote,
+            content : contentNote,
+            date : dateNote,
+            complete : false,
+        };
+
+        // push new Data to array note app
+        arrayNote.push(newDataNote);
+        // save note to local storage 
+        saveToLocalStorage(arrayNote);
     }
 }
+
+
+// -> save to local storage
+function saveToLocalStorage (arrayNote) {
+    localStorage.setItem("noteList",JSON.stringify(arrayNote));
+}
+
+
+
 
 // -> show Modal and Change title and content Modal
 function showModalHandler () {

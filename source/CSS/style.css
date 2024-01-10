@@ -28,7 +28,7 @@ input:focus {
     height: 80px;
     background-color: goldenrod;
     position: absolute;
-    top: 30%;
+    top: 20%;
     display: flex;
     justify-content: center;
     align-items: center;

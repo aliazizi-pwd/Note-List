@@ -12,6 +12,7 @@ const countNote = $.querySelector(".count-note");
 const modal = $.querySelector(".modal-main");
 const nameModal = $.querySelector(".name-modal");
 const titleModal = $.querySelector(".title-modal");
+const percentModal = $.querySelector(".percent-modal");
 const noteApp = $.querySelector(".note-app");
 const body = $.querySelector("body");
 // -> select button click :|
@@ -21,6 +22,52 @@ const btnFilterAll = $.querySelector(".All");
 const btnFilterComplete = $.querySelector(".Completed");
 const btnFilterUnComplete = $.querySelector(".unCompleted");
 const btnChangeTheme = $.querySelector(".changeTheme");
+
+
+// -> The code section of the function check input validation and add notes
+function getCheckInputHandler () {
+    let titleNote,dateNote,contentNote;
+    titleNote = innerTitle.value.trim(); 
+    dateNote = innerDate.value.trim(); 
+    contentNote = innerContent.value.trim();
+
+    // check input
+    if (!titleNote || !dateNote || !contentNote) {
+        showModalHandler();
+    } else {
+        // process for create note item
+        
+    }
+}
+
+// -> show Modal and Change title and content Modal
+function showModalHandler () {
+    let timer = "";
+    let percent = 0;
+    anime({
+        targets: '.modal-main',
+        translateY: 250,
+    });
+    noteApp.style.filter = 'blur(15px)';
+    titleModal.innerHTML = "All inputs must be filled";
+    modal.style.display = "block";
+    timer = setInterval(function () {
+        percent++;
+        percentModal.innerHTML = `${percent}%`;
+        if (percent > 100) {    
+            anime({
+                targets: '.modal-main',
+                translateY: -250,
+            });
+            noteApp.style.filter = 'blur(0px)';
+            modal.style.display = "none";
+            clearInterval(timer);
+            percent = 0;
+        }
+    } ,40);
+}
+
+
 
 
 // -> The code section of the function to change the theme
@@ -62,6 +109,7 @@ function loadNoteAppHandler () {
 
 
 // -> set click event Listener for Click Button's Application
+btnAdd.addEventListener("click",getCheckInputHandler);
 btnChangeTheme.addEventListener("click",changeThemeHandler);
 // -> set click event Listener for Window and Document Self
 window.addEventListener("load",loadNoteAppHandler);

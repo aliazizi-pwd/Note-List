@@ -25,10 +25,13 @@ input:focus {
 }
 .modal-main{
     width: 300px;
-    height: 60px;
+    height: 80px;
     background-color: goldenrod;
     position: absolute;
-    top: 10px;
+    top: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     display: none;
 }
 .note {

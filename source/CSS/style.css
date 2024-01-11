@@ -44,3 +44,8 @@ input:focus {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+.completeON {
+    font-weight: bold !important;
+    text-decoration: line-through;
+    color: #d61e1e;
+}

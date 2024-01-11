@@ -98,12 +98,18 @@ function loadNoteAppHandler () {
 // -> Create a new note item 
 function createNoteHandler (arrayNote) {
     let newNoteItem,newBodyNote,newActionNote,newBox;
-    let cardTitle,cardText,cardDate,btnComplete,btnRemove;
+    let  newNoteID,cardTitle,cardText,cardDate,btnComplete,btnRemove;
 
     dataBaseNote.innerHTML = "";
 
     // Create new Note Item
     arrayNote.forEach(function (note) {
+
+        // new ID Note Item 
+        newNoteID = $.createElement("input");
+        newNoteID.type = "hidden";
+        newNoteID.value = note.id;
+
         
         // new note item
         newNoteItem = $.createElement("div");
@@ -143,21 +149,45 @@ function createNoteHandler (arrayNote) {
         btnComplete = $.createElement("button");
         btnComplete.className = "btn-complete btn btn-success ms-1";
         btnComplete.innerHTML = `<i class='fa fa-check'></i>`;
+        btnComplete.setAttribute("onclick", 'completeNoteHandler('+ note.id +')');
 
         // new button Remove
         btnRemove = $.createElement("button");
         btnRemove.className = "btn-remove btn btn-danger ms-1";
         btnRemove.innerHTML = `<i class='fa fa-trash'></i>`;
 
+        // check status or complete note item
+        if (note.complete) {
+            newNoteItem.classList.add("completeON");
+            btnComplete.innerHTML = `<i class='fa fa-check fa-bounce'></i>`;
+        }
+
         // append data to element's Dom
         newNoteItem.append(newBodyNote,cardTitle,cardText,newActionNote);
-        newBox.append(btnRemove,btnComplete);
+        newBox.append(btnRemove,btnComplete,newNoteID);
         newActionNote.append(newBox,cardDate);
 
         // send data to dataBase
         dataBaseNote.appendChild(newNoteItem);
     });
 }
+
+
+// -> complete note item
+function completeNoteHandler (targetID) {
+    let receiveDataNote = JSON.parse(localStorage.getItem("noteList"));
+    arrayNote = receiveDataNote;
+ 
+
+    arrayNote.forEach(function (note) {
+        targetID === note.id ? note.complete = !note.complete : null;
+    });
+
+
+    saveToLocalStorage(arrayNote);
+    createNoteHandler(arrayNote);
+}
+
 
 
 function changeColorNoteHandler (e) {
@@ -169,9 +199,9 @@ function changeColorNoteHandler (e) {
             innerContent.style.backgroundColor = "#fff";
             break;
         case "Green":   
-            innerTitle.style.backgroundColor = "#56ab2f";
-            innerDate.style.backgroundColor = "#56ab2f";
-            innerContent.style.backgroundColor = "#56ab2f";
+            innerTitle.style.backgroundColor = "#11998e";
+            innerDate.style.backgroundColor = "#11998e";
+            innerContent.style.backgroundColor = "#11998e";
             break;
         case "Blue":
             innerTitle.style.backgroundColor = "#6DD5FA";

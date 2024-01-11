@@ -57,6 +57,17 @@ function getCheckInputHandler () {
         saveToLocalStorage(arrayNote);
         // Create new Note Item
         createNoteHandler(arrayNote);
+
+
+        // Clear input and data to input
+        innerTitle.value = "";
+        innerDate.value = "";
+        innerContent.value = "";
+        innerTitle.style.backgroundColor = "#fff";
+        innerDate.style.backgroundColor = "#fff";
+        innerContent.style.backgroundColor = "#fff";
+
+        innerTitle.focus();
     }
 }
 

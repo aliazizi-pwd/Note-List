@@ -53,6 +53,8 @@ function getCheckInputHandler () {
         arrayNote.push(newDataNote);
         // save note to local storage 
         saveToLocalStorage(arrayNote);
+        // Create new Note Item
+        createNoteHandler(arrayNote);
     }
 }
 
@@ -61,6 +63,72 @@ function getCheckInputHandler () {
 function saveToLocalStorage (arrayNote) {
     localStorage.setItem("noteList",JSON.stringify(arrayNote));
 }
+
+
+
+// -> Create a new note item 
+function createNoteHandler (arrayNote) {
+    let newNoteItem,newBodyNote,newActionNote,newBox;
+    let cardTitle,cardText,cardDate,btnComplete,btnRemove;
+
+
+    dataBaseNote.innerHTML = "";
+
+    // Create new Note Item
+    arrayNote.forEach(function (note) {
+        
+        // new note item
+        newNoteItem = $.createElement("div");
+        newNoteItem.className = "card p-2";
+        newNoteItem.style.width = "25rem";
+
+        // new card body note item
+        newBodyNote = $.createElement("div");
+        newBodyNote.classList.add("card-body");
+
+        // new Title note item
+        cardTitle = $.createElement("h5");
+        cardTitle.className ="card-title fw-bold";
+        cardTitle.innerHTML = note.title;
+
+        // new card text note item
+        cardText = $.createElement("p");
+        cardText.classList.add("card-text");
+        cardText.innerHTML = note.content;
+
+        // new action note item
+        newActionNote = $.createElement("div");
+        newActionNote.className = "d-flex flex-row justify-content-between align-items-center";
+
+        // new action button
+        newBox = $.createElement("div");
+        newBox.className = "d-flex flex-row justify-content-start align-items-center";
+
+        // new Date note item
+        cardDate = $.createElement("h5");
+        cardDate.classList.add("fs-6");
+        cardDate.innerHTML = note.date;
+
+        // new button complete
+        btnComplete = $.createElement("button");
+        btnComplete.className = "btn-complete btn btn-success ms-1";
+        btnComplete.innerHTML = "Complete";
+
+        // new button Remove
+        btnRemove = $.createElement("button");
+        btnRemove.className = "btn-remove btn btn-danger ms-1";
+        btnRemove.innerHTML = "Remove";
+
+        // append data to element's Dom
+        newNoteItem.append(newBodyNote,cardTitle,cardText,newActionNote);
+        newBox.append(btnComplete,btnRemove);
+        newActionNote.append(newBox,cardDate);
+
+        // send data to dataBase
+        dataBaseNote.appendChild(newNoteItem);
+    });
+}
+
 
 
 

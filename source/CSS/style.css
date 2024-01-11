@@ -34,12 +34,6 @@ input:focus {
     align-items: center;
     display: none;
 }
-.note {
-    width: 250px;
-    height: 250px;
-    background-color: aqua;
-    border-radius: 10px;
-}
 .bg-darkMode {
     background: #000;
     color: #fff;

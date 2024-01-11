@@ -57,6 +57,8 @@ function getCheckInputHandler () {
         saveToLocalStorage(arrayNote);
         // Create new Note Item
         createNoteHandler(arrayNote);
+        // change count of note item
+        statusNoteItemHandler(arrayNote);
 
 
         // Clear input and data to input
@@ -91,6 +93,7 @@ function loadNoteAppHandler () {
     } else {
         saveToLocalStorage(arrayNote);
         createNoteHandler(arrayNote);
+        statusNoteItemHandler(arrayNote);
     }
 }
 
@@ -215,14 +218,20 @@ function removeNoteHandler (targetID) {
                     timer = 0;
                     clearInterval(timerRemove);
                     arrayNote.splice(findIndex , 1);
-                    createNoteHandler(arrayNote);
                     saveToLocalStorage(arrayNote);
+                    createNoteHandler(arrayNote);
+                    statusNoteItemHandler(arrayNote);
                 }
         } , 30);
         }
     }); 
 }
 
+
+// change status of note item to added and removed
+function statusNoteItemHandler (arrayNote) {
+    countNote.innerHTML = `You Have ${arrayNote.length} Tasks in total`;
+}
 
 
 

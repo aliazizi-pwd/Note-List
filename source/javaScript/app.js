@@ -15,6 +15,7 @@ const titleModal = $.querySelector(".title-modal");
 const percentModal = $.querySelector(".percent-modal");
 const noteApp = $.querySelector(".note-app");
 const body = $.querySelector("body");
+const selectBackColorNote = $.querySelector(".select-backcolor");
 // -> select button click :|
 const btnAdd = $.querySelector(".btn-Add");
 const btnClearAll = $.querySelector(".btn-clearAll");
@@ -47,6 +48,7 @@ function getCheckInputHandler () {
             content : contentNote,
             date : dateNote,
             complete : false,
+            color : "white",
         };
 
         // push new Data to array note app
@@ -70,7 +72,7 @@ function saveToLocalStorage (arrayNote) {
 function createNoteHandler (arrayNote) {
     let newNoteItem,newBodyNote,newActionNote,newBox;
     let cardTitle,cardText,cardDate,btnComplete,btnRemove;
-
+    let titleTarget = btnAdd.parentElement.firstElementChild.value;
 
     dataBaseNote.innerHTML = "";
 
@@ -81,6 +83,11 @@ function createNoteHandler (arrayNote) {
         newNoteItem = $.createElement("div");
         newNoteItem.className = "card p-2";
         newNoteItem.style.width = "25rem";
+
+        if (titleTarget === note.title) {
+            note.color = innerTitle.style.backgroundColor;
+        }
+        newNoteItem.style.backgroundColor = note.color;
 
         // new card body note item
         newBodyNote = $.createElement("div");
@@ -127,6 +134,33 @@ function createNoteHandler (arrayNote) {
         // send data to dataBase
         dataBaseNote.appendChild(newNoteItem);
     });
+}
+
+
+function changeColorNoteHandler (e) {
+    let targetValue = e.target.value;
+    switch (targetValue) {
+        case "White":
+            innerTitle.style.backgroundColor = "white";
+            innerDate.style.backgroundColor = "white";
+            innerContent.style.backgroundColor = "white";
+            break;
+        case "Green":   
+            innerTitle.style.backgroundColor = "#56ab2f";
+            innerDate.style.backgroundColor = "#56ab2f";
+            innerContent.style.backgroundColor = "#56ab2f";
+            break;
+        case "Blue":
+            innerTitle.style.backgroundColor = "#6DD5FA";
+            innerDate.style.backgroundColor = "#6DD5FA";
+            innerContent.style.backgroundColor = "#6DD5FA";
+            break;
+        case "Blueviolet":
+            innerTitle.style.backgroundColor = "#A770EF";
+            innerDate.style.backgroundColor = "#A770EF";
+            innerContent.style.backgroundColor = "#A770EF";
+            break;
+    }
 }
 
 
@@ -204,5 +238,6 @@ function loadNoteAppHandler () {
 // -> set click event Listener for Click Button's Application
 btnAdd.addEventListener("click",getCheckInputHandler);
 btnChangeTheme.addEventListener("click",changeThemeHandler);
+selectBackColorNote.addEventListener("change",changeColorNoteHandler);
 // -> set click event Listener for Window and Document Self
 window.addEventListener("load",loadNoteAppHandler);

@@ -48,7 +48,7 @@ function getCheckInputHandler () {
             content : contentNote,
             date : dateNote,
             complete : false,
-            color : "white",
+            color : innerTitle.style.backgroundColor,
         };
 
         // push new Data to array note app
@@ -67,12 +67,27 @@ function saveToLocalStorage (arrayNote) {
 }
 
 
+// -> The code section of the function load web note app page
+function loadNoteAppHandler () {
+    let receiveThemeLocalStorage = localStorage.getItem("themeNoteApp");
+    let receiveDataNote = JSON.parse(localStorage.getItem("noteList"));
+    receiveThemeLocalStorage === "Dark" ? changeThemeHandler() : null;
+
+    arrayNote = receiveDataNote;
+
+    if (arrayNote === null) {
+        arrayNote = [];
+    } else {
+        saveToLocalStorage(arrayNote);
+        createNoteHandler(arrayNote);
+    }
+}
+
 
 // -> Create a new note item 
 function createNoteHandler (arrayNote) {
     let newNoteItem,newBodyNote,newActionNote,newBox;
     let cardTitle,cardText,cardDate,btnComplete,btnRemove;
-    let titleTarget = btnAdd.parentElement.firstElementChild.value;
 
     dataBaseNote.innerHTML = "";
 
@@ -83,10 +98,7 @@ function createNoteHandler (arrayNote) {
         newNoteItem = $.createElement("div");
         newNoteItem.className = "card p-2";
         newNoteItem.style.width = "25rem";
-
-        if (titleTarget === note.title) {
-            note.color = innerTitle.style.backgroundColor;
-        }
+        newNoteItem.style.height = "12rem";
         newNoteItem.style.backgroundColor = note.color;
 
         // new card body note item
@@ -100,7 +112,7 @@ function createNoteHandler (arrayNote) {
 
         // new card text note item
         cardText = $.createElement("p");
-        cardText.classList.add("card-text");
+        cardText.className = "card-text box-text";
         cardText.innerHTML = note.content;
 
         // new action note item
@@ -119,16 +131,16 @@ function createNoteHandler (arrayNote) {
         // new button complete
         btnComplete = $.createElement("button");
         btnComplete.className = "btn-complete btn btn-success ms-1";
-        btnComplete.innerHTML = "Complete";
+        btnComplete.innerHTML = `<i class='fa fa-check'></i>`;
 
         // new button Remove
         btnRemove = $.createElement("button");
         btnRemove.className = "btn-remove btn btn-danger ms-1";
-        btnRemove.innerHTML = "Remove";
+        btnRemove.innerHTML = `<i class='fa fa-trash'></i>`;
 
         // append data to element's Dom
         newNoteItem.append(newBodyNote,cardTitle,cardText,newActionNote);
-        newBox.append(btnComplete,btnRemove);
+        newBox.append(btnRemove,btnComplete);
         newActionNote.append(newBox,cardDate);
 
         // send data to dataBase
@@ -141,9 +153,9 @@ function changeColorNoteHandler (e) {
     let targetValue = e.target.value;
     switch (targetValue) {
         case "White":
-            innerTitle.style.backgroundColor = "white";
-            innerDate.style.backgroundColor = "white";
-            innerContent.style.backgroundColor = "white";
+            innerTitle.style.backgroundColor = "#fff";
+            innerDate.style.backgroundColor = "#fff";
+            innerContent.style.backgroundColor = "#fff";
             break;
         case "Green":   
             innerTitle.style.backgroundColor = "#56ab2f";
@@ -224,12 +236,6 @@ function applyLightThemeHandler (body,noteApp) {
     body.classList.replace("bg-darkMode","bg-body-tertiary");
     body.classList.replace("text-dark","text-light");
     noteApp.classList.replace("text-light","text-dark");
-}
-
-// -> The code section of the function load web note app page
-function loadNoteAppHandler () {
-    let receiveThemeLocalStorage = localStorage.getItem("themeNoteApp");
-    receiveThemeLocalStorage === "Dark" ? changeThemeHandler() : null;
 }
 
 

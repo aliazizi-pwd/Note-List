@@ -142,7 +142,7 @@ function createNoteHandler (arrayNote) {
 
         // new Date note item
         cardDate = $.createElement("h5");
-        cardDate.classList.add("fs-6");
+        cardDate.className = "fs-6 date";
         cardDate.innerHTML = note.date;
 
         // new button complete
@@ -155,6 +155,7 @@ function createNoteHandler (arrayNote) {
         btnRemove = $.createElement("button");
         btnRemove.className = "btn-remove btn btn-danger ms-1";
         btnRemove.innerHTML = `<i class='fa fa-trash'></i>`;
+        btnRemove.setAttribute("onclick",'removeNoteHandler('+ note.id +')');
 
         // check status or complete note item
         if (note.complete) {
@@ -190,6 +191,42 @@ function completeNoteHandler (targetID) {
 
 
 
+// -> remove note item
+function removeNoteHandler (targetID) {
+    let receiveDataNote = JSON.parse(localStorage.getItem("noteList"));
+    let noteItem = dataBaseNote.querySelectorAll(".card");
+    let findIndex = "";
+    let timer = 0;
+    arrayNote = receiveDataNote;
+
+    // find Index
+    findIndex = arrayNote.findIndex(function (note) {
+        return targetID === note.id;
+    });
+
+
+    noteItem.forEach(function (note) {
+        if (Number(note.querySelector("input").value) === targetID) {
+            let sum = note.lastChild.lastChild;
+            let timerRemove = setInterval(function () {
+                timer++;
+                sum.innerHTML = `${timer}%`;
+                if (timer > 99) {
+                    timer = 0;
+                    clearInterval(timerRemove);
+                    arrayNote.splice(findIndex , 1);
+                    createNoteHandler(arrayNote);
+                    saveToLocalStorage(arrayNote);
+                }
+        } , 30);
+        }
+    }); 
+}
+
+
+
+
+// -> change theme color
 function changeColorNoteHandler (e) {
     let targetValue = e.target.value;
     switch (targetValue) {

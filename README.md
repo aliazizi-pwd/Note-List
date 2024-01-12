@@ -27,7 +27,7 @@ To use the Note Application, follow the steps below:
 ![Demo Light Mode](./public/image/demo-2.png)
 
 
-
+## Features 
 ```vscode
 // Include this code in your project to set up the Note Applicatio
 

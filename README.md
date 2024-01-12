@@ -8,7 +8,7 @@ Welcome to the Note Application! This simple web application allows you to manag
 To use the Note Application, follow the steps below:
 
 ## Click on the link to run the project online 🧑‍💻
-[Link to the Note application project View online](noteapp-aliazizi.netlify.app)
+[Link to the Note application project View online](https://noteapp-aliazizi.netlify.app/)
 
 
 ## Features ⭕

@@ -23,6 +23,8 @@ const btnFilterAll = $.querySelector(".All");
 const btnFilterComplete = $.querySelector(".Completed");
 const btnFilterUnComplete = $.querySelector(".unCompleted");
 const btnChangeTheme = $.querySelector(".changeTheme");
+const btnsClickFilter = $.querySelectorAll(".click-filter");
+
 
 
 // array note app
@@ -278,6 +280,24 @@ function btnFilterUnCompleteHandler () {
     arrayNote = uncomplete;
     createNoteHandler(arrayNote);
 }
+
+
+// -> Invoke function active to file javascript and click all completed and uncomplete add color active
+(function () {
+    let lastClick = null;   
+    btnsClickFilter.forEach(function (btn) {
+        btn.addEventListener("click" , function (e) {
+            if (lastClick !== null) {
+                lastClick.classList.remove("text-success");
+            }
+            
+            btn.classList.add("text-success");
+            lastClick = btn;
+        });
+    });
+}());
+
+
 
 
 // -> change theme color

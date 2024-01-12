@@ -235,6 +235,51 @@ function statusNoteItemHandler (arrayNote) {
 
 
 
+
+// -> show note item all
+function btnFilterAllHandler () {
+    let receiveDataNote = JSON.parse(localStorage.getItem("noteList"));
+    arrayNote = receiveDataNote;
+
+
+    createNoteHandler(arrayNote);
+}
+
+
+
+// -> show note item Filter Completed
+function btnFilterCompleteHandler () {
+    let receiveDataNote = JSON.parse(localStorage.getItem("noteList"));
+    let completeOn = "";
+    
+    arrayNote = receiveDataNote;
+
+    completeOn = arrayNote.filter(function (note) {
+        return note.complete === true;
+    });
+
+    arrayNote = completeOn;
+    createNoteHandler(arrayNote);
+}
+
+
+
+// -> show note item Filter unCompleted
+function btnFilterUnCompleteHandler () {
+    let receiveDataNote = JSON.parse(localStorage.getItem("noteList"));
+    let uncomplete = "";
+
+
+    arrayNote = receiveDataNote;
+    uncomplete = arrayNote.filter(function (note) {
+        return note.complete === false;
+    });
+
+    arrayNote = uncomplete;
+    createNoteHandler(arrayNote);
+}
+
+
 // -> change theme color
 function changeColorNoteHandler (e) {
     let targetValue = e.target.value;
@@ -331,6 +376,9 @@ function applyLightThemeHandler (body,noteApp) {
 // -> set click event Listener for Click Button's Application
 btnAdd.addEventListener("click",getCheckInputHandler);
 btnChangeTheme.addEventListener("click",changeThemeHandler);
+btnFilterAll.addEventListener("click",btnFilterAllHandler);
+btnFilterComplete.addEventListener("click",btnFilterCompleteHandler);
+btnFilterUnComplete.addEventListener("click",btnFilterUnCompleteHandler);
 selectBackColorNote.addEventListener("change",changeColorNoteHandler);
 // -> set click event Listener for Window and Document Self
 window.addEventListener("load",loadNoteAppHandler);

@@ -28,7 +28,7 @@ To use the Note Application, follow the steps below:
 
 
 
-```javascript
+```vscode
 // Include this code in your project to set up the Note Applicatio
 
 ## Features

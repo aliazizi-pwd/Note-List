@@ -1,10 +1,17 @@
-# Note Application
+# Note Application 
 
 Welcome to the Note Application! This simple web application allows you to manage your tasks and notes efficiently. Below, you'll find information about the code structure, functionality, and features of the application.
 
-## Getting Started
+## Getting Started 
+
 
 To use the Note Application, follow the steps below:
+
+## Click on the link to run the project online 🧑‍💻
+[Link to the Note application project View online](noteapp-aliazizi.netlify.app)
+
+
+## Features ⭕
 
 1. Open the application in your web browser.
 2. Fill in the title, date, and content fields to add a new note.

@@ -299,6 +299,16 @@ function btnFilterUnCompleteHandler () {
 
 
 
+// -> clear all note items
+function clearAllNoteItemsHandler () {
+    arrayNote = [];
+    createNoteHandler(arrayNote);
+    saveToLocalStorage(arrayNote);
+}
+
+
+
+
 
 // -> change theme color
 function changeColorNoteHandler (e) {
@@ -399,6 +409,7 @@ btnChangeTheme.addEventListener("click",changeThemeHandler);
 btnFilterAll.addEventListener("click",btnFilterAllHandler);
 btnFilterComplete.addEventListener("click",btnFilterCompleteHandler);
 btnFilterUnComplete.addEventListener("click",btnFilterUnCompleteHandler);
+btnClearAll.addEventListener("click",clearAllNoteItemsHandler);
 selectBackColorNote.addEventListener("change",changeColorNoteHandler);
 // -> set click event Listener for Window and Document Self
 window.addEventListener("load",loadNoteAppHandler);

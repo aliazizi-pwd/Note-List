@@ -15,6 +15,12 @@ To use the Note Application, follow the steps below:
 7. Remove or mark notes as complete using the respective buttons.
 
 
+## Demo Project 
+![Demo Light Mode](./public/image/demo-1.png)
+![Demo Light Mode](./public/image/demo-2.png)
+
+
+
 ```javascript
 // Include this code in your project to set up the Note Applicatio
 
